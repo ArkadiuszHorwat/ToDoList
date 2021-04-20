@@ -15,19 +15,23 @@ function App() {
     e.preventDefault();
 
     Axios.post('http://localhost:3001/login', {
-        userlogin: userLogin,
-        userpasswd: userPasswd
+      userlogin: userLogin,
+      userpasswd: userPasswd
     }).then(response => {
-        setCorrectLog(response.data);
+      setCorrectLog(response.data);
+      if(response.data){
+        localStorage.setItem('userLogin', userLogin);
+        localStorage.setItem('userPassword', userPasswd);
+      }
     });
   }
 
   const handleOnChangeLogin = event => {
-      setUserLogin(event.target.value);
+    setUserLogin(event.target.value);
   }
 
   const handleOnChangePassword = event => {
-      setUserPasswd(event.target.value);
+    setUserPasswd(event.target.value);
   }
 
   const handleButtonR = () => {
@@ -40,6 +44,8 @@ function App() {
 
   const handleButtonO = () => {
     setCorrectLog(false);
+    localStorage.removeItem('userLogin');
+    localStorage.removeItem('userPassword');
   }
 
   return (
