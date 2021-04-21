@@ -12,7 +12,9 @@ function ToDoList({ userId }) {
     Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
       setListItem(response.data);
     });
-  }, [userId]);
+
+    setStatus(null);
+  }, [userId, status]);
 
   const handleOnSubmit = () => {
     Axios.post('http://localhost:3001/item/insert', {
@@ -31,6 +33,7 @@ function ToDoList({ userId }) {
 
   const handleDelete = itemId => {
     Axios.delete(`http://localhost:3001/item/delete/${itemId}`);
+    setStatus(true);
   }
 
   const handleChangeUpdate = e => {
