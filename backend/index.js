@@ -25,6 +25,16 @@ app.get('/item/get/:userId', (req, res) => {
     });
 });
 
+app.delete('/item/delete/:itemId', (req, res) => {
+    const itemid = req.params.itemId;
+
+    db.query(
+        `DELETE FROM item WHERE item_id = '${itemid}';`,
+        (error, response) => {
+        if(error) console.log(error)
+    });
+});
+
 app.post('/item/insert', (req, res) => {
     const item = req.body.item;
     const status = req.body.status;

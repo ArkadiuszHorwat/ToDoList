@@ -7,18 +7,12 @@ function ToDoList({ userId }) {
   const [listItem, setListItem] = useState([]);
 
   useEffect(() => {
-    getData();
-  }, [userId, listItem]);
-
-  const getData = () => {
     Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
       setListItem(response.data);
     });
-  }
+  }, [userId, listItem]);
 
-  const handleOnSubmit = e => {
-    e.preventDefault();
-
+  const handleOnSubmit = () => {
     Axios.post('http://localhost:3001/item/insert', {
       item: item,
       status: status,
@@ -26,13 +20,18 @@ function ToDoList({ userId }) {
     }).then(response => {
       console.log(response);
     });
-
-    getData();
   }
 
   const handleChange = e => {
     setItem(e.target.value);
     setStatus(false);
+  }
+
+  const handleDelete = itemId => {
+    Axios.delete(`http://localhost:3001/item/delete/${itemId}`);
+    Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
+      setListItem(response.data);
+    });
   }
 
   return (
@@ -54,6 +53,8 @@ function ToDoList({ userId }) {
           listItem.map(item => {
             return <li key={item.item_id}>
               {item.item_description}
+              <i className="fa fa-pencil"></i>
+              <i className="fa fa-trash" onClick={()=>{handleDelete(item.item_id)}}></i>
               </li>
           })
         }
