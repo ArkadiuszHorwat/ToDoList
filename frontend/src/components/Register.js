@@ -12,8 +12,8 @@ function Register() {
             username: userName,
             userlogin: userLogin,
             userpasswd: userPasswd
-        }).then(response => {
-            console.log(response);
+        }).then(() => {
+            alert('registration completed')
         });
     }
 

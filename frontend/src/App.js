@@ -5,11 +5,11 @@ import ToDoList from './components/ToDoList';
 import Axios from 'axios';
 
 function App() {
-  const [activePage, setActivePage] = useState(false);
+  const [activePage, setActivePage] = useState(null);
 
   const [userLogin, setUserLogin] = useState('');
   const [userPasswd, setUserPasswd] = useState('');
-  const [correctLog, setCorrectLog] = useState(false);
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
   const handleOnSubmitLogin = e => {
     e.preventDefault();
@@ -18,10 +18,12 @@ function App() {
       userlogin: userLogin,
       userpasswd: userPasswd
     }).then(response => {
-      setCorrectLog(response.data);
       if(response.data){
         localStorage.setItem('userLogin', userLogin);
         localStorage.setItem('userPassword', userPasswd);
+        setActivePage(true);
+        localStorage.setItem('userId', response.data[0].user_id);
+        setUserId(localStorage.getItem('userId'));
       }
     });
   }
@@ -43,24 +45,27 @@ function App() {
   }
 
   const handleButtonO = () => {
-    setCorrectLog(false);
+    setActivePage(false);
+    setUserLogin('');
+    setUserPasswd('');
     localStorage.removeItem('userLogin');
     localStorage.removeItem('userPassword');
+    localStorage.removeItem('userId');
   }
 
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      {!correctLog && <input type='button' value='Sign up' onClick={handleButtonR} />}
+      {localStorage.getItem('userLogin') === null  && <input type='button' value='Sign up' onClick={handleButtonR} />}
       {
-        correctLog ?
+        localStorage.getItem('userLogin') != null ?
         <input type='button' value='Sign out' onClick={handleButtonO} />
         :
         <input type='button' value='Sign in' onClick={handleButtonL} />
       }
       {
-        correctLog ? 
-        <ToDoList />
+        localStorage.getItem('userLogin') != null ? 
+        <ToDoList userId={userId}/>
         :
         activePage ? 
         <Register /> 
