@@ -12,7 +12,7 @@ function ToDoList({ userId }) {
     Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
       setListItem(response.data);
     });
-  }, [userId, listItem]);
+  }, [userId]);
 
   const handleOnSubmit = () => {
     Axios.post('http://localhost:3001/item/insert', {
@@ -31,9 +31,6 @@ function ToDoList({ userId }) {
 
   const handleDelete = itemId => {
     Axios.delete(`http://localhost:3001/item/delete/${itemId}`);
-    Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
-      setListItem(response.data);
-    });
   }
 
   const handleChangeUpdate = e => {
@@ -57,7 +54,7 @@ function ToDoList({ userId }) {
           onChange={handleChange}
           required
         />
-        <input 
+        <input className='button'
           type='submit'
           value='Add'
         />
@@ -67,13 +64,13 @@ function ToDoList({ userId }) {
           listItem.map(item => {
             return <li key={item.item_id}>
               {item.item_description}
-              <form onSubmit={()=>{handleUpdate(item.item_id)}}>
+              <form className='form-update' onSubmit={()=>{handleUpdate(item.item_id)}}>
                 <input 
                   type='text' 
                   placeholder='Update'
                   onChange={handleChangeUpdate} 
                   required/>
-                <input type='submit' value='update'/>
+                <input className='update' type='submit' value='update'/>
               </form>
               <i className="fa fa-trash" onClick={()=>{handleDelete(item.item_id)}}></i>
               </li>

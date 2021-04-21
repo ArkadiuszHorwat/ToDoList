@@ -56,26 +56,32 @@ function App() {
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      {localStorage.getItem('userLogin') === null  && <input type='button' value='Sign up' onClick={handleButtonR} />}
-      {
-        localStorage.getItem('userLogin') != null ?
-        <input type='button' value='Sign out' onClick={handleButtonO} />
-        :
-        <input type='button' value='Sign in' onClick={handleButtonL} />
-      }
-      {
-        localStorage.getItem('userLogin') != null ? 
-        <ToDoList userId={userId}/>
-        :
-        activePage ? 
-        <Register /> 
-        : 
-        <Login 
-          onSubmit={handleOnSubmitLogin} 
-          onChangeLogin={handleOnChangeLogin} 
-          onChangePassword={handleOnChangePassword}
-        />
-      }
+      <main>
+        <div className="menu">
+          {localStorage.getItem('userLogin') === null  && <input className='button' type='button' value='Sign up' onClick={handleButtonR} />}
+          {
+            localStorage.getItem('userLogin') != null ?
+            <input className='button' type='button' value='Sign out' onClick={handleButtonO} />
+            :
+            <input className='button' type='button' value='Sign in' onClick={handleButtonL} />
+          }
+        </div>
+        <div className="content">
+          {
+          localStorage.getItem('userLogin') != null ? 
+          <ToDoList userId={userId}/>
+          :
+          activePage ? 
+          <Register /> 
+          : 
+          <Login 
+            onSubmit={handleOnSubmitLogin} 
+            onChangeLogin={handleOnChangeLogin} 
+            onChangePassword={handleOnChangePassword}
+          />
+          }
+        </div>
+      </main>
     </div>
   );
 }

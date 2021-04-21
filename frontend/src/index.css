@@ -1,5 +1,95 @@
 body {
   margin: 0;
-  background-color: darkcyan;
+  background-color: #2f3640;
+  text-transform: uppercase;
+  font-family: 'Roboto Mono', monospace;
+  color: #f5f6fa;
 }
+
+h1{
+  margin: 0;
+  text-align: center;
+  padding: 10px;
+  color: #fbc531;
+}
+
+main{
+  max-height: 500px;
+  max-width: 500px;
+  margin: auto;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input{
+  background: #f5f6fa;
+  border: none;
+  outline: none;
+  margin: 5px;
+  padding: 5px;
+  min-height: 30px;
+}
+
+input:hover{
+  cursor: pointer;
+}
+
+.fa:hover{
+  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+ul li{
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #fbc531;
+  border-radius: 20px;
+  color: #2f3640;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.button{
+  background-color: #fbc531;
+  border: none;
+  color: #2f3640;
+  padding: 10px 25px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.form-update{
+  display: flex;
+  flex-direction: row;
+}
+
+.update{
+  background-color: #2f3640;
+  border: none;
+  color: #fbc531;
+  padding: 5px 15px;
+  font-size: 14px;
+  width: 30%;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 

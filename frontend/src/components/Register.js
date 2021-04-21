@@ -49,7 +49,7 @@ function Register() {
                 onChange={handleOnChangePassword}
                 required
             />
-            <input 
+            <input className='button'
                 type='submit'
                 value='sign up'
             />

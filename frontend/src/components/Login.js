@@ -16,7 +16,7 @@ function Login({ onSubmit, onChangeLogin, onChangePassword }) {
                 onChange={onChangePassword}
                 required
             />
-            <input 
+            <input className='button'
                 type='submit'
                 value='sign in'
             />
