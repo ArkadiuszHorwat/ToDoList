@@ -21,7 +21,7 @@ app.get('/item/get/:userId', (req, res) => {
         `SELECT * FROM item WHERE user_O_id = '${userid}';`,
         (error, response) => {
         res.send(response);
-        if(error) console.log(error)
+        if(error != null) console.log(error)
     });
 });
 
@@ -31,7 +31,18 @@ app.delete('/item/delete/:itemId', (req, res) => {
     db.query(
         `DELETE FROM item WHERE item_id = '${itemid}';`,
         (error, response) => {
-        if(error) console.log(error)
+        if(error != null) console.log(error)
+    });
+});
+
+app.put('/item/update', (req, res) => {
+    const itemid = req.body.itemId;
+    const item = req.body.newItem;
+
+    db.query(
+        `UPDATE item SET item_description = '${item}' WHERE item_id = '${itemid}';`,
+        (error, response) => {
+        if(error != null) console.log(error)
     });
 });
 
@@ -44,7 +55,7 @@ app.post('/item/insert', (req, res) => {
         `INSERT INTO item (item_id, item_description, item_status, user_O_id) VALUES 
         (NULL, '${item}', '${status}', '${userId}');`,
         (error, response) => {
-        console.log(error);
+        if(error != null) console.log(error);
     });
 });
 
@@ -57,7 +68,7 @@ app.post('/register', (req, res) => {
         `INSERT INTO user (user_id, user_name, user_login, user_passwd) VALUES 
         (NULL, '${username}', '${userlogin}', '${userpasswd}');`,
         (error, response) => {
-        console.log(error);
+        if(error != null) console.log(error);
     });
 });
 

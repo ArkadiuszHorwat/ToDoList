@@ -6,6 +6,8 @@ function ToDoList({ userId }) {
   const [status, setStatus] = useState(null);
   const [listItem, setListItem] = useState([]);
 
+  const [updateItem, setUpdateItem] = useState('');
+
   useEffect(() => {
     Axios.get(`http://localhost:3001/item/get/${userId}`).then(response => {
       setListItem(response.data);
@@ -34,6 +36,18 @@ function ToDoList({ userId }) {
     });
   }
 
+  const handleChangeUpdate = e => {
+    setUpdateItem(e.target.value);
+  }
+
+  const handleUpdate = itemId => {
+    Axios.put('http://localhost:3001/item/update', {
+      itemId: itemId,
+      newItem: updateItem
+    });
+    setUpdateItem('');
+  }
+
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
@@ -53,7 +67,14 @@ function ToDoList({ userId }) {
           listItem.map(item => {
             return <li key={item.item_id}>
               {item.item_description}
-              <i className="fa fa-pencil"></i>
+              <form onSubmit={()=>{handleUpdate(item.item_id)}}>
+                <input 
+                  type='text' 
+                  placeholder='Update'
+                  onChange={handleChangeUpdate} 
+                  required/>
+                <input type='submit' value='update'/>
+              </form>
               <i className="fa fa-trash" onClick={()=>{handleDelete(item.item_id)}}></i>
               </li>
           })
