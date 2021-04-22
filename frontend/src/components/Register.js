@@ -30,20 +30,23 @@ function Register() {
     }
 
     return (
-        <form onSubmit={handleOnSubmitRegister}>
+        <form title='registerForm' onSubmit={handleOnSubmitRegister}>
             <input 
+                title='inputName'
                 type='text'
                 placeholder='Enter your name'
                 onChange={handleOnChangeName}
                 required
             />
             <input 
+                title='inputLogin'
                 type="text"
                 placeholder='Enter your login'
                 onChange={handleOnChangeLogin}
                 required
             />
             <input 
+                title='inputPassword'
                 type="password"
                 placeholder="Enter your password"
                 onChange={handleOnChangePassword}

@@ -3,14 +3,16 @@ import React from 'react';
 function Login({ onSubmit, onChangeLogin, onChangePassword }) {
 
     return (
-        <form onSubmit={onSubmit}>
+        <form title='form' onSubmit={onSubmit}>
             <input 
+                title='inputLogin'
                 type="text"
                 placeholder='Enter your login'
                 onChange={onChangeLogin}
                 required
             />
             <input 
+                title='inputPassword'
                 type="password"
                 placeholder="Enter your password"
                 onChange={onChangePassword}

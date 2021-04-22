@@ -26,7 +26,7 @@ function ToDoList({ userId }) {
     });
   }
 
-  const handleChange = e => {
+  const handleOnChange = e => {
     setItem(e.target.value);
     setStatus(false);
   }
@@ -50,11 +50,11 @@ function ToDoList({ userId }) {
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
+      <form title='formToDo' onSubmit={handleOnSubmit}>
         <input 
           type='text'
           placeholder='Enter to do item...'
-          onChange={handleChange}
+          onChange={handleOnChange}
           required
         />
         <input className='button'
@@ -62,7 +62,7 @@ function ToDoList({ userId }) {
           value='Add'
         />
       </form>
-      <ul>
+      <ul title='ulToDo'>
         {
           listItem.map(item => {
             return <li key={item.item_id}>

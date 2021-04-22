@@ -57,7 +57,7 @@ function App() {
     <div className="App">
       <h1>ToDo List</h1>
       <main>
-        <div className="menu">
+        <div className="menu" title='menu'>
           {localStorage.getItem('userLogin') === null  && <input className='button' type='button' value='Sign up' onClick={handleButtonR} />}
           {
             localStorage.getItem('userLogin') != null ?
@@ -66,7 +66,7 @@ function App() {
             <input className='button' type='button' value='Sign in' onClick={handleButtonL} />
           }
         </div>
-        <div className="content">
+        <div className="content" title='content'>
           {
           localStorage.getItem('userLogin') != null ? 
           <ToDoList userId={userId}/>
